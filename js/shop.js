@@ -55,34 +55,54 @@ var products = [
         type: 'clothes'
     }
 ]
-// Array with products (objects) added directly with push(). Products in this array are repeated.
+// Array with products (objects) added directly with push(). Products in this 
+// array are repeated.
 var cartList = [];
 
-// Improved version of cartList. Cart is an array of products (objects), but each one has a quantity field to define its quantity, so these products are not repeated.
+// Improved version of cartList. Cart is an array of products (objects), but 
+// each one has a quantity field to define its quantity, so these products are not repeated.
 var cart = [];
 
 var total = 0;
 
-// Exercise 1
+// TODO Exercise 1
 function buy(id) {
     // 1. Loop for to the array products to get the item to add to cart
+    for (const item in products) {
+        const producto = products[item];
+        if (producto.id == id) {
+            var listado = producto; // producto seleccionado
+        }
+    }
     // 2. Add found product to the cartList array
+    cartList.push(listado);
 }
 
-// Exercise 2
+
+// TODO Exercise 2 vaciado de Array cartList & cart de productos
 function cleanCart() {
-
+        //console.log(cartList);
+        cartList.splice(0, cartList.length);
+        // console.log(cartList);
+        cart.splice(0, cart.length);
 }
 
-// Exercise 3
+// TODO Exercise 3
 function calculateTotal() {
     // Calculate total price of the cart using the "cartList" array
+    total = 0;
+    for (let i = 0; i < cartList.length; i++) {
+        total += cartList[i].price;
+        console.log("El resultado es " + total);
+    };
 }
 
-// Exercise 4
+// TODO Exercise 4
 function generateCart() {
     // Using the "cartlist" array that contains all the items in the shopping cart, 
     // generate the "cart" array that does not contain repeated items, instead each item of this array "cart" shows the quantity of product.
+
+
 }
 
 // Exercise 5
