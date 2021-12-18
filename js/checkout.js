@@ -22,8 +22,18 @@ var errorPhone = document.getElementById('errorPhone');
 */
 
 // Exercise 6
+
 function validate() {
     // Validate fields entered by the user: name, phone, password, and email
     // First Name, 
- 
+  
+    // errorPhone.style.display = 'block';
+    errorPhone.style.visibility = 'visible';
+
+      // display: none;
+      // display: block;
+      
+
+
+
 }
