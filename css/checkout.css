@@ -4,11 +4,15 @@ body {
     font-family: Poppins;
 }
 
-#errorPassword, #errorName, #errorPhone {
+#errorName, #errorLastName, #errorPassword, #errorAddress, #errorEmail, #errorPhone {
+    /* display: block; */
     display: none;
-    
 }
 
-.name{
-   background-color: aqua;
+
+.input-incorrecto .input{
+	border: 3px solid #bb2929;
+}
+.input-correcto .input{
+	border: 3px solid #1ed12d;
 }

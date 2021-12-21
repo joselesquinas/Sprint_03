@@ -30,42 +30,56 @@ var errorPhone = document.getElementById('errorPhone');
 */
 
 const expresiones = {
-   nombre: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
-   apellido: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
+   nombre: /^[a-zA-ZÀ-ÿ\s]{3,40}$/, // Letras y espacios, pueden llevar acentos.
+   apellido: /^[a-zA-ZÀ-ÿ\s]{3,40}$/, // Letras y espacios, pueden llevar acentos.
    correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
    password: /^.{4,12}$/, // 4 a 12 digitos.
    direccion: /^[a-zA-Z0-9\_\-]{4,16}$/, // Letras, numeros, guion y guion_bajo
    telefono: /^\d{7,14}$/ // 7 a 14 numeros.
 };
-
+const campos = {
+   nombre: false,
+   apellido: false,
+   correo: false,
+   password: false,
+   direccion: false,
+	telefono: false
+}
 
 const validateCampos = (e) => {
-
    switch (e.target.name) {
       case "fname":
-         if(expresiones.nombre.test()){
-
-         } else {
-
-         };
+         validateCampo(expresiones.nombre, e.target, 'Name');
       break;
       case "lname":
-         
+         validateCampo(expresiones.apellido, e.target, 'LastName');
       break;
       case "email":
-         
+         validateCampo(expresiones.correo, e.target, 'Email');
       break;
       case "Password":
-
+         validateCampo(expresiones.password, e.target, 'Password');
       break;
       case "address":
-            
+         validateCampo(expresiones.direccion, e.target, 'Address');
       break;
       case "phone":
-            
+         validateCampo(expresiones.telefono, e.target, 'Phone'); 
       break;     
-
    }
+};
+
+const validateCampo = (expresion, input, campo) => {
+   if (expresion.test(input.value)) {
+      document.getElementById(`error${campo}`).style.display = "none";
+      document.getElementById(`div_${campo}`).classList.remove('input-incorrecto');
+      document.getElementById(`div_${campo}`).classList.add('input-correcto');
+      campos[campo] = true;
+   } else {
+      document.getElementById(`div_${campo}`).classList.add('input-incorrecto');
+      document.getElementById(`error${campo}`).style.display = "block";
+      campos[campo] = false;
+   };
 
 };
 
@@ -75,12 +89,14 @@ inputs.forEach((input) => {
    input.addEventListener('blur', validateCampos);
 });
 
-
+form.addEventListener('submit', (e) => {
+   e.preventDefault();
+});
 // Exercise 6
 function validate() {
     // Validate fields entered by the user: name, phone, password, and email
     // First Name, 
      
    
-}
+};
 
