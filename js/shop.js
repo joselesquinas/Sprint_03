@@ -67,15 +67,20 @@ var total = 0;
 // TODO Exercise 1
 function buy(id) {
    // 1. Loop for to the array products to get the item to add to cart
-   let listado = {};
-   for (const item in products) {
-      const producto = products[item];
-      if (producto.id == id) {
-         listado = producto; // producto seleccionado
-      }
-   }
    // 2. Add found product to the cartList array
-   cartList.push(listado);
+   /*
+         let listado = {};
+         for (const item in products) {
+            if (products[item].id == id) {
+               listado = products[item]; // producto seleccionado
+            }
+         }
+         
+         cartList.push(listado);
+   */
+
+   // lanzando ejercicio 7
+   addToCart(id);
 }
 
 
@@ -83,7 +88,7 @@ function buy(id) {
 function cleanCart() {
    //console.log(cartList);
    cartList.splice(0, cartList.length);
-   // cart.splice(0, cart.length); // console.log(cartList);
+   cart.splice(0, cart.length);
 }
 
 // TODO Exercise 3
@@ -92,7 +97,7 @@ function calculateTotal() {
    total = 0;
    for (let i = 0; i < cartList.length; i++) {
       total += cartList[i].price;
-      console.log("El resultado es " + total);
+      // console.log("El resultado es " + total);
    };
 }
 
@@ -149,20 +154,20 @@ function generateCart() {
 function applyPromotionsCart() {
    // Apply promotions to each item in the array "cart"
    for (let i = 0; i < cart.length; i++) {
-      if (cart[i].id == 1 && cart[i].quantity >= 3) {
+      if (cart[i].articulo.id == 1 && cart[i].quantity >= 3) {
          // Si l'usuari compra 3 o més ampolles d'oli, el preu del producte descendeix a 10 euros.
          let preciOferta = 10;
          cart[i].subtotalWithDiscount = preciOferta * cart[i].quantity;
-      } else if (cart[i].id == 3 && cart[i].quantity >= 10) {
+      } else if (cart[i].articulo.id == 3 && cart[i].quantity >= 10) {
          // En comprar-se 10 o més mescles per a fer pastís, el seu preu es rebaixa a 2/3.
-         let x = ((cart[i].price * 2) / 3);
+         let x = ((cart[i].articulo.price * 2) / 3);
          cart[i].subtotalWithDiscount = Number.parseFloat(x).toFixed(2) * cart[i].quantity;
       } else {
          cart[i].subtotalWithDiscount = 0;
       };
    }
-
-}
+   // Modificado para ejercicio 7
+};
 
 
 // ** Nivell II **
@@ -172,12 +177,57 @@ function addToCart(id) {
    // Refactor previous code in order to simplify it 
    // 1. Loop for to the array products to get the item to add to cart
    // 2. Add found product to the cart array or update its quantity in case it has been added previously.
-}
+   const n = (id - 1);
+   let exist = false;
+   if (cart.length === 0) {
+      // No hay articulo en el cart
+      cart.unshift({
+         articulo: products[n],
+         quantity: 1,
+         subtotal: products[n].price,
+         subtotalWithDiscount: 0
+      });
+   } else {
+      // articulo SI esta en el cart  
+      for (let i = 0; i < cart.length; i++) {
+         if (products[n].id == cart[i].articulo.id) {
+            // articulo SI esta en el cart
+            cart[n].quantity += 1;
+            cart[n].subtotal = cart[n].articulo.price * cart[n].quantity;
+            exist = true;
+         }
+      };
+      if (!exist) {
+         // articulo NO esta en el cart
+         cart.push({
+            articulo: products[n],
+            quantity: 1,
+            subtotal: products[n].price,
+            subtotalWithDiscount: 0
+         });
+      };
+      exist = false;
+   };
+   applyPromotionsCart();
+   console.log(cart);
+};
 
 // Exercise 8
 function removeFromCart(id) {
    // 1. Loop for to the array products to get the item to add to cart
    // 2. Add found product to the cartList array
+   const n = (id - 1);
+   console.log(cart[n].articulo.id);
+   if (id == cart[n].articulo.id) {
+      // articulo SI esta en el cart
+      if (cart[n].quantity == 1) {
+         cart[n] = [];
+      } else {
+         cart[n].quantity -= 1;
+         cart[n].subtotal = cart[n].articulo.price * cart[n].quantity;
+         applyPromotionsCart();
+      }
+   };
 }
 
 // Exercise 9
