@@ -3,19 +3,16 @@ const inputs = document.querySelectorAll('.form input');
 
 // Get the input fields
 var nom = document.querySelectorAll('.name');
-
 var password = document.querySelector(".password");
 var phone = document.querySelector('.phone');
-
 
 // Get the error elements
 var errorName = document.getElementById('errorName');
 var errorEmail = document.getElementById('errorEmail');
 var errorAddress = document.getElementById("errorAddress");
-var errorLastName= document.getElementById('errorLastName');
+var errorLastName = document.getElementById('errorLastName');
 var errorPassword = document.getElementById("errorPassword");
 var errorPhone = document.getElementById('errorPhone');
-
 
 const expresiones = {
    nombre: /^[a-zA-ZÀ-ÿ\s]{3,40}$/, // Letras y espacios, pueden llevar acentos.
@@ -32,29 +29,29 @@ const campos = {
    correo: false,
    password: false,
    direccion: false,
-	telefono: false
+   telefono: false
 }
 
 const validateCampos = (e) => {
    switch (e.target.name) {
       case "fname":
          validateCampo(expresiones.nombre, e.target, 'Name');
-      break;
+         break;
       case "lname":
          validateCampo(expresiones.apellido, e.target, 'LastName');
-      break;
+         break;
       case "email":
          validateCampo(expresiones.correo, e.target, 'Email');
-      break;
+         break;
       case "password1":
          validateCampo(expresiones.password, e.target, 'Password');
-      break;
+         break;
       case "address":
          validateCampo(expresiones.direccion, e.target, 'Address');
-      break;
+         break;
       case "phone":
-         validateCampo(expresiones.telefono, e.target, 'Phone'); 
-      break;     
+         validateCampo(expresiones.telefono, e.target, 'Phone');
+         break;
    }
 };
 
@@ -81,11 +78,11 @@ inputs.forEach((input) => {
 form.addEventListener('submit', (e) => {
    e.preventDefault();
 });
+
+
 // Exercise 6
 function validate() {
-    // Validate fields entered by the user: name, phone, password, and email
-    // First Name, 
-     
-   
-};
+   // Validate fields entered by the user: name, phone, password, and email
+   // First Name, 
 
+};
