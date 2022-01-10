@@ -5,29 +5,17 @@ const inputs = document.querySelectorAll('.form input');
 var nom = document.querySelectorAll('.name');
 
 var password = document.querySelector(".password");
-
 var phone = document.querySelector('.phone');
+
 
 // Get the error elements
 var errorName = document.getElementById('errorName');
-
+var errorEmail = document.getElementById('errorEmail');
+var errorAddress = document.getElementById("errorAddress");
+var errorLastName= document.getElementById('errorLastName');
 var errorPassword = document.getElementById("errorPassword");
-
 var errorPhone = document.getElementById('errorPhone');
 
-/* TODO 
-- Tots els camps són obligatoris.
-
-- Tots els camps han de tenir almenys 3 caràcters.
-
-- El nom i cognoms han de contenir només lletres.
-
-- El telèfon ha de contenir només números.
-
-- La contrasenya ha d'incloure números i lletres.
-
-- L'email ha de tenir format d'email.
-*/
 
 const expresiones = {
    nombre: /^[a-zA-ZÀ-ÿ\s]{3,40}$/, // Letras y espacios, pueden llevar acentos.
@@ -37,6 +25,7 @@ const expresiones = {
    direccion: /^[a-zA-Z0-9\_\-]{4,16}$/, // Letras, numeros, guion y guion_bajo
    telefono: /^\d{7,14}$/ // 7 a 14 numeros.
 };
+
 const campos = {
    nombre: false,
    apellido: false,
@@ -57,7 +46,7 @@ const validateCampos = (e) => {
       case "email":
          validateCampo(expresiones.correo, e.target, 'Email');
       break;
-      case "Password":
+      case "password1":
          validateCampo(expresiones.password, e.target, 'Password');
       break;
       case "address":
